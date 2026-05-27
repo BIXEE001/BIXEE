@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BIXEE — Premium Streetwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --black: #080808;
+  --white: #F8F6F1;
+  --beige: #E8E0D0;
+  --charcoal: #1C1C1E;
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dim: rgba(201,168,76,0.15);
+  --gray: #6B6B6B;
+  --mid: #2E2E2E;
+  --border: rgba(201,168,76,0.2);
+  --font-display: 'Montserrat', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'Space Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{background:var(--black);color:var(--white);font-family:var(--font-display);overflow-x:hidden;cursor:none;}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:12px;height:12px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s ease,opacity 0.2s;mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:40px;height:40px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s ease;mix-blend-mode:difference;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 48px;height:76px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s,backdrop-filter 0.4s;}
+nav.scrolled{background:rgba(8,8,8,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.logo-mark{width:44px;height:44px;position:relative;flex-shrink:0;}
+.logo-mark svg{width:44px;height:44px;}
+.logo-word{font-family:var(--font-display);font-weight:900;font-size:22px;letter-spacing:0.25em;color:var(--white);}
+.logo-word span{color:var(--gold);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{color:var(--white);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;transition:color 0.3s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a:hover::after{width:100%;}
+.nav-actions{display:flex;align-items:center;gap:24px;}
+.nav-btn{background:none;border:none;color:var(--white);cursor:none;padding:8px;transition:color 0.3s;position:relative;}
+.nav-btn:hover{color:var(--gold);}
+.cart-count{position:absolute;top:2px;right:2px;background:var(--gold);color:var(--black);width:16px;height:16px;border-radius:50%;font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+.nav-cta{background:var(--gold);color:var(--black);border:none;padding:10px 24px;font-family:var(--font-display);font-size:10px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;cursor:none;transition:all 0.3s;}
+.nav-cta:hover{background:var(--gold-light);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px;}
+.hamburger span{width:24px;height:2px;background:var(--white);transition:all 0.3s;}
+
+/* ── HERO ── */
+#hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px;opacity:0.4;}
+.hero-bg-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(201,168,76,0.06) 0%,transparent 70%);animation:pulse-glow 6s ease-in-out infinite;}
+.hero-grain{position:absolute;inset:0;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");}
+@keyframes pulse-glow{0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.05);}}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 48px;width:100%;}
+.hero-label{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:10px;color:var(--gold);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:32px;opacity:0;animation:fadeUp 1s ease 0.3s forwards;}
+.hero-label::before{content:'';width:40px;height:1px;background:var(--gold);}
+.hero-title{font-size:clamp(64px,9vw,140px);font-weight:900;line-height:0.9;letter-spacing:-0.02em;margin-bottom:32px;opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
+.hero-title .line-1{display:block;color:var(--white);}
+.hero-title .line-2{display:block;color:transparent;-webkit-text-stroke:1px var(--gold);letter-spacing:0.04em;}
+.hero-title .line-3{display:block;color:var(--white);font-style:italic;font-family:var(--font-serif);font-weight:300;font-size:0.6em;}
+.hero-sub{max-width:480px;font-size:13px;font-weight:400;color:rgba(248,246,241,0.55);line-height:1.9;letter-spacing:0.05em;margin-bottom:48px;opacity:0;animation:fadeUp 1s ease 0.7s forwards;}
+.hero-actions{display:flex;align-items:center;gap:24px;opacity:0;animation:fadeUp 1s ease 0.9s forwards;}
+.btn-primary{background:var(--gold);color:var(--black);padding:16px 40px;font-size:11px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;border:none;cursor:none;transition:all 0.4s;position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--black);transform:translateX(-101%);transition:transform 0.4s cubic-bezier(0.77,0,0.175,1);}
+.btn-primary:hover{color:var(--gold);}
+.btn-primary:hover::before{transform:translateX(0);}
+.btn-primary span{position:relative;z-index:1;}
+.btn-outline{border:1px solid rgba(248,246,241,0.3);color:var(--white);padding:16px 40px;font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;cursor:none;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s ease 1.5s forwards;cursor:none;}
+.hero-scroll span{font-size:9px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gray);}
+.scroll-line{width:1px;height:60px;background:linear-gradient(var(--gold),transparent);animation:scroll-drop 2s ease infinite;}
+@keyframes scroll-drop{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+.hero-stats{position:absolute;right:48px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:40px;opacity:0;animation:fadeLeft 1s ease 1s forwards;z-index:2;}
+.stat{text-align:right;}
+.stat-num{font-size:36px;font-weight:900;color:var(--gold);line-height:1;}
+.stat-label{font-size:9px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray);margin-top:4px;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* ── TICKER ── */
+.ticker-wrap{background:var(--gold);overflow:hidden;height:36px;display:flex;align-items:center;}
+.ticker-inner{display:flex;animation:ticker 25s linear infinite;white-space:nowrap;}
+.ticker-item{font-size:10px;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;color:var(--black);padding:0 48px;}
+.ticker-dot{color:rgba(8,8,8,0.4);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── SECTIONS ── */
+section{padding:120px 48px;}
+.section-label{font-family:var(--font-mono);font-size:10px;color:var(--gold);letter-spacing:0.35em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px;}
+.section-label::before{content:'';width:30px;height:1px;background:var(--gold);}
+.section-title{font-size:clamp(36px,5vw,72px);font-weight:900;line-height:1;letter-spacing:-0.02em;margin-bottom:16px;}
+.section-sub{font-size:14px;color:var(--gray);letter-spacing:0.05em;line-height:1.7;max-width:500px;}
+.max-w{max-width:1400px;margin:0 auto;}
+
+/* ── PRODUCTS GRID ── */
+#featured{background:var(--black);}
+.products-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;}
+.view-all{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;transition:opacity 0.3s;cursor:none;}
+.view-all:hover{opacity:0.6;}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.product-card{position:relative;cursor:none;group:;}
+.product-card:nth-child(1){grid-row:span 2;}
+.product-img{position:relative;overflow:hidden;background:var(--charcoal);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;}
+.product-card:nth-child(1) .product-img{height:100%;}
+.product-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;overflow:hidden;}
+.pp-bg{position:absolute;inset:0;}
+.pp-pattern-1{background:linear-gradient(135deg,#1a1a1a 25%,#222 25%,#222 50%,#1a1a1a 50%,#1a1a1a 75%,#222 75%);background-size:24px 24px;}
+.pp-pattern-2{background:linear-gradient(to bottom,#1C1C1E,#252525);}
+.pp-pattern-3{background:radial-gradient(ellipse at 30% 40%,#252525,#111);}
+.pp-pattern-4{background:linear-gradient(45deg,#181818,#242424,#181818);}
+.pp-icon{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.pp-icon svg{opacity:0.15;}
+.pp-tag{position:relative;z-index:1;font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;color:rgba(201,168,76,0.4);text-transform:uppercase;}
+.pp-corner{position:absolute;width:30px;height:30px;opacity:0.25;}
+.pp-corner.tl{top:12px;left:12px;border-top:1px solid var(--gold);border-left:1px solid var(--gold);}
+.pp-corner.tr{top:12px;right:12px;border-top:1px solid var(--gold);border-right:1px solid var(--gold);}
+.pp-corner.bl{bottom:12px;left:12px;border-bottom:1px solid var(--gold);border-left:1px solid var(--gold);}
+.pp-corner.br{bottom:12px;right:12px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);}
+.product-badge{position:absolute;top:16px;left:16px;z-index:3;font-size:8px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;padding:4px 10px;}
+.badge-new{background:var(--gold);color:var(--black);}
+.badge-sold{background:var(--charcoal);color:var(--gray);border:1px solid var(--gray);}
+.badge-hot{background:var(--black);color:var(--gold);border:1px solid var(--gold);}
+.product-overlay{position:absolute;inset:0;background:rgba(8,8,8,0.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity 0.4s;z-index:4;}
+.product-card:hover .product-overlay{opacity:1;}
+.product-card:hover .product-img{transform:scale(1.02);}
+.product-img{transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);}
+.btn-cart{background:var(--gold);color:var(--black);border:none;padding:12px 28px;font-family:var(--font-display);font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;cursor:none;transition:all 0.3s;transform:translateY(10px);transition:all 0.3s;}
+.product-card:hover .btn-cart{transform:translateY(0);}
+.btn-cart:hover{background:var(--gold-light);}
+.btn-wishlist{background:none;border:1px solid rgba(248,246,241,0.3);color:var(--white);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:none;transition:all 0.3s;}
+.btn-wishlist:hover{border-color:var(--gold);color:var(--gold);}
+.product-info{padding:16px 0 4px;}
+.product-name{font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.product-sub{font-size:11px;color:var(--gray);margin-bottom:10px;font-weight:400;}
+.product-footer{display:flex;justify-content:space-between;align-items:center;}
+.product-price{font-size:16px;font-weight:800;color:var(--gold);}
+.product-sizes{display:flex;gap:6px;}
+.size-dot{width:6px;height:6px;border-radius:50%;background:var(--mid);}
+.size-dot.avail{background:var(--gray);}
+
+/* ── NEW ARRIVALS ── */
+#new-arrivals{background:var(--charcoal);}
+.arrivals-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.arrivals-visual{position:relative;}
+.arrivals-main-card{background:var(--black);aspect-ratio:4/5;position:relative;overflow:hidden;}
+.arrivals-accent{position:absolute;bottom:-24px;right:-24px;width:200px;height:200px;background:var(--black);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px;}
+.arrivals-accent-num{font-size:48px;font-weight:900;color:var(--gold);line-height:1;}
+.arrivals-accent-text{font-size:9px;letter-spacing:0.3em;color:var(--gray);text-align:center;}
+.arrivals-list{display:flex;flex-direction:column;gap:0;}
+.arrival-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);align-items:center;transition:all 0.3s;cursor:none;}
+.arrival-item:hover{padding-left:8px;}
+.arrival-item:hover .arrival-num{color:var(--gold);}
+.arrival-num{font-family:var(--font-mono);font-size:11px;color:var(--gray);min-width:24px;}
+.arrival-thumb{width:64px;height:64px;background:var(--black);flex-shrink:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.arrival-thumb-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a,#252525);}
+.arrival-thumb svg{opacity:0.2;position:relative;z-index:1;}
+.arrival-details{flex:1;}
+.arrival-name{font-size:13px;font-weight:700;letter-spacing:0.08em;margin-bottom:4px;}
+.arrival-cat{font-size:10px;color:var(--gray);letter-spacing:0.15em;text-transform:uppercase;}
+.arrival-price{font-size:14px;font-weight:800;color:var(--gold);}
+
+/* ── BEST SELLERS ── */
+#best-sellers{background:var(--black);}
+.bs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.bs-card{position:relative;border:1px solid var(--border);padding:0;cursor:none;transition:border-color 0.3s;}
+.bs-card:hover{border-color:var(--gold);}
+.bs-rank{position:absolute;top:16px;right:16px;font-family:var(--font-mono);font-size:11px;color:var(--gold);z-index:5;}
+.bs-img{aspect-ratio:3/4;background:var(--charcoal);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.bs-info{padding:20px;}
+.bs-name{font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.bs-desc{font-size:11px;color:var(--gray);margin-bottom:16px;line-height:1.6;}
+.bs-footer{display:flex;justify-content:space-between;align-items:center;}
+.bs-price{font-size:18px;font-weight:900;color:var(--white);}
+.bs-btn{background:none;border:1px solid var(--gold);color:var(--gold);padding:8px 20px;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;cursor:none;transition:all 0.3s;}
+.bs-btn:hover{background:var(--gold);color:var(--black);}
+
+/* ── ABOUT ── */
+#about{background:var(--black);padding:0;overflow:hidden;}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;min-height:80vh;}
+.about-visual{background:var(--charcoal);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.about-visual-bg{position:absolute;inset:0;background:linear-gradient(135deg,#141414,#1e1e1e);}
+.about-visual-logo{position:relative;z-index:2;opacity:0.08;}
+.about-visual-text{position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3;}
+.about-visual-quote{font-family:var(--font-serif);font-size:32px;font-style:italic;font-weight:300;color:var(--white);line-height:1.3;opacity:0.7;}
+.about-content{padding:100px 80px;display:flex;flex-direction:column;justify-content:center;}
+.about-body{font-size:14px;color:var(--gray);line-height:2;margin-top:32px;margin-bottom:48px;}
+.about-vals{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;}
+.val-item{border-left:2px solid var(--gold);padding-left:16px;}
+.val-title{font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:4px;}
+.val-desc{font-size:11px;color:var(--gray);line-height:1.6;}
+
+/* ── TESTIMONIALS ── */
+#testimonials{background:var(--charcoal);}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;}
+.testi-card{background:var(--black);padding:36px;border:1px solid var(--border);position:relative;transition:border-color 0.3s;}
+.testi-card:hover{border-color:var(--gold);}
+.testi-card:nth-child(2){transform:translateY(-20px);}
+.testi-stars{display:flex;gap:4px;margin-bottom:20px;}
+.testi-stars span{color:var(--gold);font-size:12px;}
+.testi-quote{font-family:var(--font-serif);font-size:18px;font-style:italic;font-weight:300;line-height:1.6;color:var(--white);margin-bottom:24px;opacity:0.9;}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--mid);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--gold);}
+.testi-name{font-size:12px;font-weight:700;letter-spacing:0.1em;}
+.testi-loc{font-size:10px;color:var(--gray);letter-spacing:0.1em;}
+.tq-mark{position:absolute;top:24px;right:24px;font-size:72px;font-family:var(--font-serif);color:var(--gold);opacity:0.08;line-height:1;}
+
+/* ── NEWSLETTER ── */
+#newsletter{background:var(--gold);padding:80px 48px;}
+.newsletter-inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:48px;}
+.newsletter-copy .section-label{color:var(--black);margin-bottom:8px;}
+.newsletter-copy .section-label::before{background:var(--black);}
+.newsletter-title{font-size:clamp(28px,4vw,52px);font-weight:900;color:var(--black);letter-spacing:-0.02em;line-height:1;}
+.newsletter-sub{font-size:13px;color:rgba(8,8,8,0.6);margin-top:12px;}
+.newsletter-form{display:flex;gap:0;flex-shrink:0;}
+.newsletter-input{background:var(--black);border:none;color:var(--white);padding:18px 28px;font-size:13px;width:320px;outline:none;font-family:var(--font-display);}
+.newsletter-input::placeholder{color:var(--gray);}
+.newsletter-submit{background:var(--black);color:var(--gold);border:none;padding:18px 32px;font-family:var(--font-display);font-size:10px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;cursor:none;transition:all 0.3s;}
+.newsletter-submit:hover{background:var(--charcoal);}
+
+/* ── INSTAGRAM ── */
+#social{background:var(--black);padding:120px 48px 0;}
+.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:64px;}
+.ig-item{aspect-ratio:1;background:var(--charcoal);position:relative;overflow:hidden;cursor:none;display:flex;align-items:center;justify-content:center;}
+.ig-item-bg{position:absolute;inset:0;}
+.ig-bg-1{background:linear-gradient(135deg,#1a1a1a,#252525);}
+.ig-bg-2{background:linear-gradient(to bottom,#222,#181818);}
+.ig-bg-3{background:radial-gradient(ellipse at center,#252525,#111);}
+.ig-bg-4{background:linear-gradient(45deg,#1e1e1e,#2a2a2a);}
+.ig-bg-5{background:linear-gradient(135deg,#181818,#222);}
+.ig-bg-6{background:linear-gradient(to bottom,#1c1c1c,#242424);}
+.ig-item svg{position:relative;z-index:1;opacity:0.1;}
+.ig-overlay{position:absolute;inset:0;background:rgba(201,168,76,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;transition:opacity 0.3s;z-index:5;}
+.ig-item:hover .ig-overlay{opacity:1;}
+.ig-overlay svg{color:var(--black);}
+.ig-overlay span{font-size:9px;font-weight:800;letter-spacing:0.2em;color:var(--black);text-transform:uppercase;}
+.ig-handle{text-align:center;padding:32px;font-size:13px;color:var(--gray);}
+.ig-handle a{color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:0.1em;}
+
+/* ── CONTACT ── */
+#contact{background:var(--charcoal);padding:120px 48px;}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-info{display:flex;flex-direction:column;gap:32px;margin-top:48px;}
+.contact-item{display:flex;gap:20px;}
+.contact-icon{width:44px;height:44px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);}
+.contact-label{font-size:9px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
+.contact-value{font-size:13px;font-weight:500;}
+.contact-form{display:flex;flex-direction:column;gap:16px;margin-top:48px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:8px;}
+.form-group label{font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray);}
+.form-group input,.form-group textarea,.form-group select{background:var(--black);border:1px solid var(--border);color:var(--white);padding:14px 18px;font-size:13px;font-family:var(--font-display);outline:none;transition:border-color 0.3s;resize:none;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--gold);}
+.form-group select option{background:var(--black);}
+.form-submit{background:var(--gold);color:var(--black);border:none;padding:16px 40px;font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;cursor:none;transition:all 0.3s;width:100%;}
+.form-submit:hover{background:var(--gold-light);}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid var(--border);padding:80px 48px 32px;}
+.footer-inner{max-width:1400px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:64px;margin-bottom:64px;}
+.footer-brand .logo-word{font-size:28px;letter-spacing:0.3em;margin-bottom:16px;}
+.footer-desc{font-size:12px;color:var(--gray);line-height:1.9;margin-bottom:24px;}
+.footer-social{display:flex;gap:12px;}
+.social-btn{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gray);text-decoration:none;transition:all 0.3s;cursor:none;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+.footer-col h4{font-size:10px;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:24px;color:var(--white);}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.footer-col a{font-size:12px;color:var(--gray);text-decoration:none;transition:color 0.3s;cursor:none;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid var(--border);}
+.footer-copy{font-size:11px;color:var(--gray);letter-spacing:0.1em;}
+.footer-legal{display:flex;gap:24px;}
+.footer-legal a{font-size:11px;color:var(--gray);text-decoration:none;transition:color 0.3s;cursor:none;}
+.footer-legal a:hover{color:var(--white);}
+.footer-payment{display:flex;gap:12px;align-items:center;}
+.payment-badge{font-size:8px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;border:1px solid var(--border);padding:4px 10px;color:var(--gray);}
+
+/* ── CART SIDEBAR ── */
+.cart-sidebar{position:fixed;top:0;right:-500px;width:440px;height:100vh;background:var(--charcoal);z-index:2000;display:flex;flex-direction:column;transition:right 0.5s cubic-bezier(0.77,0,0.175,1);border-left:1px solid var(--border);}
+.cart-sidebar.open{right:0;}
+.cart-header{padding:32px 28px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.cart-title{font-size:14px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;}
+.cart-close{background:none;border:none;color:var(--white);cursor:none;font-size:20px;transition:color 0.3s;}
+.cart-close:hover{color:var(--gold);}
+.cart-items{flex:1;overflow-y:auto;padding:24px 28px;}
+.cart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;color:var(--gray);}
+.cart-empty svg{opacity:0.2;}
+.cart-empty p{font-size:12px;letter-spacing:0.1em;}
+.cart-item{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);}
+.cart-item-img{width:72px;height:90px;background:var(--black);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.cart-item-img svg{opacity:0.2;}
+.cart-item-details{flex:1;}
+.cart-item-name{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.cart-item-size{font-size:10px;color:var(--gray);letter-spacing:0.15em;margin-bottom:12px;}
+.cart-item-qty{display:flex;align-items:center;gap:12px;}
+.qty-btn{background:none;border:1px solid var(--border);color:var(--white);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:none;transition:all 0.3s;font-size:14px;}
+.qty-btn:hover{border-color:var(--gold);color:var(--gold);}
+.qty-num{font-size:13px;font-weight:700;min-width:24px;text-align:center;}
+.cart-item-price{font-size:14px;font-weight:800;color:var(--gold);align-self:flex-start;}
+.cart-footer{padding:24px 28px;border-top:1px solid var(--border);}
+.cart-totals{margin-bottom:20px;}
+.cart-row{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;}
+.cart-row.total{font-size:16px;font-weight:900;border-top:1px solid var(--border);margin-top:8px;padding-top:12px;}
+.cart-row.total span:last-child{color:var(--gold);}
+.checkout-btn{width:100%;background:var(--gold);color:var(--black);border:none;padding:18px;font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;cursor:none;transition:all 0.3s;margin-bottom:12px;}
+.checkout-btn:hover{background:var(--gold-light);}
+.continue-btn{width:100%;background:none;border:1px solid var(--border);color:var(--white);padding:14px;font-family:var(--font-display);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;cursor:none;transition:all 0.3s;}
+.continue-btn:hover{border-color:var(--white);}
+.cart-overlay{position:fixed;inset:0;background:rgba(8,8,8,0.7);z-index:1999;opacity:0;pointer-events:none;transition:opacity 0.4s;backdrop-filter:blur(4px);}
+.cart-overlay.active{opacity:1;pointer-events:all;}
+
+/* ── CHECKOUT MODAL ── */
+.checkout-modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;background:rgba(8,8,8,0.9);backdrop-filter:blur(8px);}
+.checkout-modal.open{display:flex;}
+.checkout-box{background:var(--charcoal);width:90%;max-width:880px;max-height:90vh;overflow-y:auto;border:1px solid var(--border);}
+.checkout-box::-webkit-scrollbar{width:2px;}
+.checkout-box::-webkit-scrollbar-thumb{background:var(--gold);}
+.checkout-head{padding:32px 40px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.checkout-head h2{font-size:18px;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;}
+.modal-close{background:none;border:none;color:var(--white);cursor:none;font-size:24px;transition:color 0.3s;}
+.modal-close:hover{color:var(--gold);}
+.checkout-body{display:grid;grid-template-columns:1fr 340px;gap:0;}
+.checkout-form-area{padding:40px;border-right:1px solid var(--border);}
+.checkout-steps{display:flex;gap:0;margin-bottom:40px;}
+.step{flex:1;padding:12px 16px;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;text-align:center;border-bottom:2px solid var(--border);color:var(--gray);cursor:none;transition:all 0.3s;}
+.step.active{border-bottom-color:var(--gold);color:var(--gold);}
+.step.done{border-bottom-color:var(--gold);color:var(--gold);opacity:0.5;}
+.form-section{margin-bottom:32px;}
+.form-section h3{font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:20px;color:var(--gray);}
+.checkout-input{width:100%;background:var(--black);border:1px solid var(--border);color:var(--white);padding:14px 18px;font-size:13px;font-family:var(--font-display);outline:none;transition:border-color 0.3s;margin-bottom:12px;}
+.checkout-input:focus{border-color:var(--gold);}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.payment-methods{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
+.pay-method{border:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;gap:16px;cursor:none;transition:all 0.3s;}
+.pay-method:hover,.pay-method.selected{border-color:var(--gold);}
+.pay-radio{width:18px;height:18px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.3s;}
+.pay-method.selected .pay-radio{border-color:var(--gold);}
+.pay-radio::after{content:'';width:8px;height:8px;background:var(--gold);border-radius:50%;opacity:0;transition:opacity 0.3s;}
+.pay-method.selected .pay-radio::after{opacity:1;}
+.pay-logo{font-size:14px;font-weight:900;letter-spacing:0.05em;}
+.pay-logo.paystack{color:#00C3F7;}
+.pay-logo.flutter{color:#F5A623;}
+.pay-desc{font-size:10px;color:var(--gray);}
+.pay-btn{width:100%;background:var(--gold);color:var(--black);border:none;padding:18px;font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;cursor:none;transition:all 0.3s;}
+.pay-btn:hover{background:var(--gold-light);}
+.checkout-summary{padding:40px;}
+.order-items{display:flex;flex-direction:column;gap:16px;margin-bottom:24px;}
+.order-item{display:flex;gap:12px;align-items:center;}
+.order-thumb{width:52px;height:64px;background:var(--black);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.order-thumb svg{opacity:0.2;}
+.order-name{font-size:12px;font-weight:600;margin-bottom:2px;}
+.order-detail{font-size:10px;color:var(--gray);}
+.order-price{font-size:13px;font-weight:800;color:var(--gold);margin-left:auto;}
+.summary-totals{border-top:1px solid var(--border);padding-top:20px;}
+.summary-row{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;color:var(--gray);}
+.summary-row.grand{font-size:16px;font-weight:900;color:var(--white);border-top:1px solid var(--border);margin-top:8px;padding-top:12px;}
+.summary-row.grand span:last-child{color:var(--gold);}
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(40px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+
+/* ── NOTIFICATION ── */
+.notif{position:fixed;bottom:32px;right:32px;background:var(--charcoal);border:1px solid var(--gold);padding:16px 24px;z-index:5000;transform:translateY(100px);opacity:0;transition:all 0.4s;max-width:280px;}
+.notif.show{transform:translateY(0);opacity:1;}
+.notif-title{font-size:11px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.notif-msg{font-size:11px;color:var(--gray);}
+
+/* ── MOBILE MENU ── */
+.mobile-menu{position:fixed;inset:0;background:var(--black);z-index:1500;display:flex;flex-direction:column;padding:100px 48px 48px;transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.77,0,0.175,1);}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-nav-links{list-style:none;display:flex;flex-direction:column;gap:32px;}
+.mobile-nav-links a{font-size:36px;font-weight:900;color:var(--white);text-decoration:none;letter-spacing:-0.01em;transition:color 0.3s;}
+.mobile-nav-links a:hover{color:var(--gold);}
+.mobile-footer{margin-top:auto;border-top:1px solid var(--border);padding-top:32px;display:flex;justify-content:space-between;align-items:center;}
+.mobile-social{display:flex;gap:16px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1200px){
+  .products-grid{grid-template-columns:repeat(3,1fr);}
+  .product-card:nth-child(1){grid-row:span 1;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px;}
+}
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .hero-content{padding:0 24px;}
+  .hero-stats{display:none;}
+  section{padding:80px 24px;}
+  .products-grid{grid-template-columns:repeat(2,1fr);}
+  .arrivals-layout{grid-template-columns:1fr;}
+  .arrivals-visual{display:none;}
+  .bs-grid{grid-template-columns:1fr 1fr;}
+  .about-inner{grid-template-columns:1fr;}
+  .about-visual{height:300px;}
+  .about-content{padding:60px 32px;}
+  .testimonials-grid{grid-template-columns:1fr;}
+  .testi-card:nth-child(2){transform:translateY(0);}
+  .newsletter-inner{flex-direction:column;text-align:center;}
+  .newsletter-form{flex-direction:column;width:100%;}
+  .newsletter-input{width:100%;}
+  .ig-grid{grid-template-columns:repeat(3,1fr);}
+  .contact-inner{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .checkout-body{grid-template-columns:1fr;}
+  .checkout-summary{border-top:1px solid var(--border);}
+  .checkout-form-area{border-right:none;}
+  .hero-title{font-size:clamp(48px,10vw,100px);}
+}
+@media(max-width:600px){
+  .products-grid{grid-template-columns:1fr;}
+  .bs-grid{grid-template-columns:1fr;}
+  .ig-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-top{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .input-row{grid-template-columns:1fr;}
+  .cart-sidebar{width:100%;}
+  section{padding:60px 20px;}
+  #newsletter{padding:60px 20px;}
+  footer{padding:60px 20px 24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NOTIFICATION -->
+<div class="notif" id="notif">
+  <div class="notif-title">Added to Cart</div>
+  <div class="notif-msg" id="notif-msg">Item added to your cart.</div>
+</div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-nav-links">
+    <li><a href="#featured" onclick="closeMobile()">Shop</a></li>
+    <li><a href="#new-arrivals" onclick="closeMobile()">New In</a></li>
+    <li><a href="#best-sellers" onclick="closeMobile()">Best Sellers</a></li>
+    <li><a href="#about" onclick="closeMobile()">About</a></li>
+    <li><a href="#contact" onclick="closeMobile()">Contact</a></li>
+  </ul>
+  <div class="mobile-footer">
+    <div class="mobile-social">
+      <a href="#" class="social-btn" style="border:1px solid rgba(201,168,76,0.3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" class="social-btn" style="border:1px solid rgba(201,168,76,0.3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+      </a>
+    </div>
+    <span style="font-family:var(--font-mono);font-size:10px;color:var(--gray);">@BIXEE</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="21" stroke="#C9A84C" stroke-width="1.5"/>
+        <path d="M13 15L22 22M22 22L31 15M22 22L13 29M22 22L31 29" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M22 22L19 22M22 22L25 22M22 22L22 19M22 22L22 25" stroke="#C9A84C" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+    </div>
+    <span class="logo-word">BIX<span>E</span>E</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#featured">Shop</a></li>
+    <li><a href="#new-arrivals">New In</a></li>
+    <li><a href="#best-sellers">Best Sellers</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="toggleCart()" aria-label="Cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="nav-btn" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <button class="nav-cta" onclick="openCheckout()">Shop Now</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-glow"></div>
+    <div class="hero-grain"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label">SS — 2025 Collection</div>
+    <h1 class="hero-title">
+      <span class="line-1">WEAR THE</span>
+      <span class="line-2">FUTURE</span>
+      <span class="line-3">Luxury Streetwear Redefined</span>
+    </h1>
+    <p class="hero-sub">BIXEE is not just clothing. It's a statement. Born from the intersection of luxury fashion and street culture — designed for those who move differently.</p>
+    <div class="hero-actions">
+      <a href="#featured" class="btn-primary"><span>Explore Collection</span></a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">2K+</div><div class="stat-label">Pieces Sold</div></div>
+    <div class="stat"><div class="stat-num">48</div><div class="stat-label">Countries</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Premium</div></div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">New Collection <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Premium Streetwear <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Free Shipping Over ₦50K <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">BIXEE — Wear The Future <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">New Drops Every Week <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Exclusive Members Club <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">New Collection <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Premium Streetwear <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Free Shipping Over ₦50K <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">BIXEE — Wear The Future <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">New Drops Every Week <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Exclusive Members Club <span class="ticker-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<section id="featured">
+  <div class="max-w">
+    <div class="products-header reveal">
+      <div>
+        <div class="section-label">— The Collection</div>
+        <h2 class="section-title">Featured<br>Pieces</h2>
+      </div>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="products-grid">
+      <!-- Card 1 (tall) -->
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-placeholder">
+            <div class="pp-bg pp-pattern-2"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+              <span class="pp-tag">IMAGE COMING SOON</span>
+            </div>
+          </div>
+          <span class="product-badge badge-new">New</span>
+          <div class="product-overlay">
+            <button class="btn-cart" onclick="addToCart('BX-001 Signature Hoodie','₦45,000')">Add to Cart</button>
+            <button class="btn-wishlist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">BX-001 Signature Hoodie</div>
+          <div class="product-sub">Heavy Drop — 450GSM</div>
+          <div class="product-footer">
+            <div class="product-price">₦45,000</div>
+            <div class="product-sizes"><div class="size-dot avail"></div><div class="size-dot avail"></div><div class="size-dot avail"></div><div class="size-dot"></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="product-card reveal" style="transition-delay:0.1s">
+        <div class="product-img">
+          <div class="product-placeholder">
+            <div class="pp-bg pp-pattern-1"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+              <span class="pp-tag">IMAGE COMING SOON</span>
+            </div>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+          <div class="product-overlay">
+            <button class="btn-cart" onclick="addToCart('BIXEE X Tee','₦22,000')">Add to Cart</button>
+            <button class="btn-wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">BIXEE X Tee</div>
+          <div class="product-sub">Heavyweight Organic Cotton</div>
+          <div class="product-footer">
+            <div class="product-price">₦22,000</div>
+            <div class="product-sizes"><div class="size-dot avail"></div><div class="size-dot avail"></div><div class="size-dot avail"></div><div class="size-dot avail"></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="product-card reveal" style="transition-delay:0.2s">
+        <div class="product-img">
+          <div class="product-placeholder">
+            <div class="pp-bg pp-pattern-3"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+              <span class="pp-tag">IMAGE COMING SOON</span>
+            </div>
+          </div>
+          <span class="product-badge badge-new">New</span>
+          <div class="product-overlay">
+            <button class="btn-cart" onclick="addToCart('Track Pants Vol.1','₦35,000')">Add to Cart</button>
+            <button class="btn-wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Track Pants Vol.1</div>
+          <div class="product-sub">Relaxed Luxury Fit</div>
+          <div class="product-footer">
+            <div class="product-price">₦35,000</div>
+            <div class="product-sizes"><div class="size-dot avail"></div><div class="size-dot avail"></div><div class="size-dot"></div><div class="size-dot"></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="product-card reveal" style="transition-delay:0.15s">
+        <div class="product-img">
+          <div class="product-placeholder">
+            <div class="pp-bg pp-pattern-4"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+              <span class="pp-tag">IMAGE COMING SOON</span>
+            </div>
+          </div>
+          <span class="product-badge badge-sold">Low Stock</span>
+          <div class="product-overlay">
+            <button class="btn-cart" onclick="addToCart('BX Bomber Jacket','₦85,000')">Add to Cart</button>
+            <button class="btn-wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">BX Bomber Jacket</div>
+          <div class="product-sub">Satin Shell — Limited Run</div>
+          <div class="product-footer">
+            <div class="product-price">₦85,000</div>
+            <div class="product-sizes"><div class="size-dot avail"></div><div class="size-dot"></div><div class="size-dot"></div><div class="size-dot"></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="product-card reveal" style="transition-delay:0.25s">
+        <div class="product-img">
+          <div class="product-placeholder">
+            <div class="pp-bg pp-pattern-1"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+              <span class="pp-tag">IMAGE COMING SOON</span>
+            </div>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+          <div class="product-overlay">
+            <button class="btn-cart" onclick="addToCart('Cargo Shorts BX','₦28,000')">Add to Cart</button>
+            <button class="btn-wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Cargo Shorts BX</div>
+          <div class="product-sub">6-Pocket — Ripstop</div>
+          <div class="product-footer">
+            <div class="product-price">₦28,000</div>
+            <div class="product-sizes"><div class="size-dot avail"></div><div class="size-dot avail"></div><div class="size-dot avail"></div><div class="size-dot avail"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section id="new-arrivals">
+  <div class="max-w">
+    <div class="arrivals-layout">
+      <div class="arrivals-visual reveal-left">
+        <div class="arrivals-main-card">
+          <div class="product-placeholder" style="height:100%">
+            <div class="pp-bg pp-pattern-2"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+              <span class="pp-tag" style="font-size:11px;color:rgba(201,168,76,0.5)">HERO SHOT<br>COMING SOON</span>
+            </div>
+            <span style="position:absolute;bottom:20px;left:20px;font-family:var(--font-mono);font-size:9px;color:rgba(201,168,76,0.3);letter-spacing:0.3em;">SS2025 — CAMPAIGN</span>
+          </div>
+        </div>
+        <div class="arrivals-accent">
+          <div class="arrivals-accent-num">12</div>
+          <div class="arrivals-accent-text">New Pieces<br>This Week</div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="section-label">— Just Dropped</div>
+        <h2 class="section-title">New<br>Arrivals</h2>
+        <p class="section-sub" style="margin-bottom:40px;">Fresh off the production line. Each piece crafted with obsessive attention to detail and uncompromising materials.</p>
+        <div class="arrivals-list">
+          <div class="arrival-item">
+            <span class="arrival-num">01</span>
+            <div class="arrival-thumb"><div class="arrival-thumb-bg"></div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div>
+            <div class="arrival-details"><div class="arrival-name">Oversized Coach Jacket</div><div class="arrival-cat">Outerwear</div></div>
+            <div class="arrival-price">₦72,000</div>
+          </div>
+          <div class="arrival-item">
+            <span class="arrival-num">02</span>
+            <div class="arrival-thumb"><div class="arrival-thumb-bg"></div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div>
+            <div class="arrival-details"><div class="arrival-name">BX Logo Crewneck</div><div class="arrival-cat">Tops</div></div>
+            <div class="arrival-price">₦38,000</div>
+          </div>
+          <div class="arrival-item">
+            <span class="arrival-num">03</span>
+            <div class="arrival-thumb"><div class="arrival-thumb-bg"></div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div>
+            <div class="arrival-details"><div class="arrival-name">Washed Denim Set</div><div class="arrival-cat">Sets</div></div>
+            <div class="arrival-price">₦65,000</div>
+          </div>
+          <div class="arrival-item">
+            <span class="arrival-num">04</span>
+            <div class="arrival-thumb"><div class="arrival-thumb-bg"></div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div>
+            <div class="arrival-details"><div class="arrival-name">Thermal Longsleeve</div><div class="arrival-cat">Essentials</div></div>
+            <div class="arrival-price">₦18,500</div>
+          </div>
+        </div>
+        <a href="#featured" class="btn-primary" style="display:inline-block;margin-top:32px;text-decoration:none;"><span>Shop All New Arrivals</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section id="best-sellers">
+  <div class="max-w">
+    <div style="text-align:center;margin-bottom:64px;" class="reveal">
+      <div class="section-label" style="justify-content:center;">— Customer Favorites</div>
+      <h2 class="section-title">Best Sellers</h2>
+      <p class="section-sub" style="margin:16px auto 0;text-align:center;">The pieces our community keeps coming back for.</p>
+    </div>
+    <div class="bs-grid">
+      <div class="bs-card reveal">
+        <span class="bs-rank">#01</span>
+        <div class="bs-img">
+          <div class="product-placeholder" style="height:100%">
+            <div class="pp-bg pp-pattern-3"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg><span class="pp-tag">COMING SOON</span></div>
+          </div>
+        </div>
+        <div class="bs-info">
+          <div class="bs-name">BX-001 Signature Hoodie</div>
+          <div class="bs-desc">Our most iconic piece. Heavy 450GSM fleece with signature embroidered X mark.</div>
+          <div class="bs-footer"><div class="bs-price">₦45,000</div><button class="bs-btn" onclick="addToCart('BX-001 Signature Hoodie','₦45,000')">Add to Cart</button></div>
+        </div>
+      </div>
+      <div class="bs-card reveal" style="transition-delay:0.1s">
+        <span class="bs-rank">#02</span>
+        <div class="bs-img">
+          <div class="product-placeholder" style="height:100%">
+            <div class="pp-bg pp-pattern-4"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg><span class="pp-tag">COMING SOON</span></div>
+          </div>
+        </div>
+        <div class="bs-info">
+          <div class="bs-name">BIXEE X Tee</div>
+          <div class="bs-desc">The everyday essential. 100% organic heavyweight cotton with oversized gold X graphic.</div>
+          <div class="bs-footer"><div class="bs-price">₦22,000</div><button class="bs-btn" onclick="addToCart('BIXEE X Tee','₦22,000')">Add to Cart</button></div>
+        </div>
+      </div>
+      <div class="bs-card reveal" style="transition-delay:0.2s">
+        <span class="bs-rank">#03</span>
+        <div class="bs-img">
+          <div class="product-placeholder" style="height:100%">
+            <div class="pp-bg pp-pattern-2"></div>
+            <div class="pp-corner tl"></div><div class="pp-corner tr"></div>
+            <div class="pp-corner bl"></div><div class="pp-corner br"></div>
+            <div class="pp-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg><span class="pp-tag">COMING SOON</span></div>
+          </div>
+        </div>
+        <div class="bs-info">
+          <div class="bs-name">BX Bomber Jacket</div>
+          <div class="bs-desc">Satin shell bomber with chenille BIXEE patch. Our most premium outerwear piece.</div>
+          <div class="bs-footer"><div class="bs-price">₦85,000</div><button class="bs-btn" onclick="addToCart('BX Bomber Jacket','₦85,000')">Add to Cart</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-visual-bg"></div>
+      <div class="about-visual-logo">
+        <svg width="300" height="300" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="21" stroke="#C9A84C" stroke-width="0.5"/>
+          <path d="M8 10L22 22M22 22L36 10M22 22L8 34M22 22L36 34" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="about-visual-text">
+        <div class="about-visual-quote">"We didn't create a brand. We created a movement for those who refuse to be ordinary."</div>
+      </div>
+    </div>
+    <div class="about-content reveal-right">
+      <div class="section-label">— Our Story</div>
+      <h2 class="section-title">The BIXEE<br>Philosophy</h2>
+      <p class="about-body">BIXEE was born from a simple belief: luxury and streetwear are not opposites. They are complements. Founded by creatives who grew up at the intersection of high fashion and street culture, BIXEE represents the generation that refuses to choose.<br><br>Every thread, every cut, every detail is considered. We source premium materials from across the globe and craft them into pieces that move with you — from the studio to the street, from Lagos to London, from Monday to forever.</p>
+      <div class="about-vals">
+        <div class="val-item"><div class="val-title">Premium Materials</div><div class="val-desc">Only the finest fabrics, sourced globally and tested rigorously.</div></div>
+        <div class="val-item"><div class="val-title">Limited Drops</div><div class="val-desc">Exclusivity by design. Each collection is capped to maintain rarity.</div></div>
+        <div class="val-item"><div class="val-title">Made to Last</div><div class="val-desc">Garments built for years, not seasons. Investment pieces.</div></div>
+        <div class="val-item"><div class="val-title">Street to Luxury</div><div class="val-desc">Wearable in any room, any city, any context. That's BIXEE.</div></div>
+      </div>
+      <a href="#contact" class="btn-outline" style="text-decoration:none;display:inline-block;">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="max-w">
+    <div style="text-align:center;" class="reveal">
+      <div class="section-label" style="justify-content:center;">— What They Say</div>
+      <h2 class="section-title">The Community<br>Speaks</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="tq-mark">"</div>
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-quote">The hoodie quality is insane. Wore it once and got three compliments within an hour. BIXEE is not playing around.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">T</div>
+          <div><div class="testi-name">TUNDE A.</div><div class="testi-loc">Lagos, Nigeria</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.1s">
+        <div class="tq-mark">"</div>
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-quote">Finally a Nigerian brand that matches global luxury standards. The bomber jacket is a statement piece. I'll be buying the whole next drop.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">K</div>
+          <div><div class="testi-name">KEMI O.</div><div class="testi-loc">Abuja, Nigeria</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.2s">
+        <div class="tq-mark">"</div>
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-quote">Ordered from the UK and still worth every penny including shipping. The packaging alone felt premium. BIXEE is the real deal.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">D</div>
+          <div><div class="testi-name">DAMI E.</div><div class="testi-loc">London, UK</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div id="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-copy reveal-left">
+      <div class="section-label">— Stay in the Loop</div>
+      <h2 class="newsletter-title">Early Access.<br>Exclusive Drops.</h2>
+      <p class="newsletter-sub">Join the BIXEE inner circle. First to know. First to shop.</p>
+    </div>
+    <div class="newsletter-form reveal-right">
+      <input class="newsletter-input" type="email" placeholder="Enter your email address"/>
+      <button class="newsletter-submit" onclick="showNotif('You\'re on the list! Welcome to BIXEE.')">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- INSTAGRAM -->
+<section id="social">
+  <div class="max-w">
+    <div style="text-align:center;" class="reveal">
+      <div class="section-label" style="justify-content:center;">— Social</div>
+      <h2 class="section-title">@BIXEE on Instagram</h2>
+      <p class="section-sub" style="margin:12px auto;text-align:center;">Follow the culture. Tag us in yours.</p>
+    </div>
+    <div class="ig-grid">
+      <div class="ig-item"><div class="ig-item-bg ig-bg-1"></div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A84C" stroke="none"/></svg><div class="ig-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg><span>View Post</span></div></div>
+      <div class="ig-item"><div class="ig-item-bg ig-bg-2"></div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A84C" stroke="none"/></svg><div class="ig-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg><span>View Post</span></div></div>
+      <div class="ig-item"><div class="ig-item-bg ig-bg-3"></div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A84C" stroke="none"/></svg><div class="ig-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg><span>View Post</span></div></div>
+      <div class="ig-item"><div class="ig-item-bg ig-bg-4"></div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A84C" stroke="none"/></svg><div class="ig-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg><span>View Post</span></div></div>
+      <div class="ig-item"><div class="ig-item-bg ig-bg-5"></div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A84C" stroke="none"/></svg><div class="ig-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg><span>View Post</span></div></div>
+      <div class="ig-item"><div class="ig-item-bg ig-bg-6"></div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A84C" stroke="none"/></svg><div class="ig-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg><span>View Post</span></div></div>
+    </div>
+    <p class="ig-handle">Follow us at <a href="#">@bixeeofficial</a> for daily drops, styling inspiration and behind-the-scenes.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="max-w">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label reveal">— Reach Out</div>
+        <h2 class="section-title reveal">Get In<br>Touch</h2>
+        <p class="section-sub reveal">Questions, wholesale inquiries, or just want to connect with the team — we're always listening.</p>
+        <div class="contact-info">
+          <div class="contact-item reveal">
+            <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="contact-label">Email</div><div class="contact-value">hello@bixee.com</div></div>
+          </div>
+          <div class="contact-item reveal">
+            <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div class="contact-label">WhatsApp</div><div class="contact-value">+234 800 BIXEE 00</div></div>
+          </div>
+          <div class="contact-item reveal">
+            <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="contact-label">Flagship</div><div class="contact-value">Lagos, Nigeria — Opening 2025</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="John"/></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe"/></div>
+          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="john@email.com"/></div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select>
+              <option>General Inquiry</option>
+              <option>Order Support</option>
+              <option>Wholesale / Stockist</option>
+              <option>Press & Media</option>
+              <option>Collaboration</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
+          <button class="form-submit" onclick="showNotif('Message sent! We\'ll get back to you shortly.')">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <svg width="36" height="36" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" stroke="#C9A84C" stroke-width="1.5"/><path d="M13 15L22 22M22 22L31 15M22 22L13 29M22 22L31 29" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <span class="logo-word" style="font-size:22px;">BIX<span style="color:var(--gold)">E</span>E</span>
+        </div>
+        <p class="footer-desc">Premium streetwear crafted for the bold, the curious, and the unbothered. Born in Africa. Worn worldwide.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" class="social-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          <a href="#" class="social-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="#" class="social-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Best Sellers</a></li>
+          <li><a href="#">Hoodies & Sweatshirts</a></li>
+          <li><a href="#">T-Shirts & Tops</a></li>
+          <li><a href="#">Bottoms</a></li>
+          <li><a href="#">Jackets & Outerwear</a></li>
+          <li><a href="#">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About BIXEE</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Stockists</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 BIXEE. All rights reserved.</span>
+      <div class="footer-payment">
+        <span style="font-size:10px;color:var(--gray);letter-spacing:0.1em;margin-right:8px;">We accept:</span>
+        <span class="payment-badge" style="color:#00C3F7;border-color:rgba(0,195,247,0.3);">PAYSTACK</span>
+        <span class="payment-badge" style="color:#F5A623;border-color:rgba(245,166,35,0.3);">FLUTTERWAVE</span>
+        <span class="payment-badge">VISA</span>
+        <span class="payment-badge">MC</span>
+      </div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <span class="cart-title">Your Cart (<span id="cartItemCount">0</span>)</span>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItemsContainer">
+    <div class="cart-empty" id="cartEmpty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-row"><span>Subtotal</span><span id="cartSubtotal">₦0</span></div>
+      <div class="cart-row"><span>Shipping</span><span>Calculated at checkout</span></div>
+      <div class="cart-row total"><span>Total</span><span id="cartTotal">₦0</span></div>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+    <button class="continue-btn" onclick="toggleCart()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-modal" id="checkoutModal">
+  <div class="checkout-box">
+    <div class="checkout-head">
+      <h2>Checkout</h2>
+      <button class="modal-close" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="checkout-body">
+      <div class="checkout-form-area">
+        <div class="checkout-steps">
+          <div class="step active" id="step1">01 — Info</div>
+          <div class="step" id="step2">02 — Shipping</div>
+          <div class="step" id="step3">03 — Payment</div>
+        </div>
+        <!-- Step 1: Info -->
+        <div id="stepContent1">
+          <div class="form-section">
+            <h3>Contact Information</h3>
+            <input class="checkout-input" type="email" placeholder="Email address"/>
+            <input class="checkout-input" type="tel" placeholder="Phone number"/>
+          </div>
+          <div class="form-section">
+            <h3>Shipping Address</h3>
+            <div class="input-row">
+              <input class="checkout-input" type="text" placeholder="First name"/>
+              <input class="checkout-input" type="text" placeholder="Last name"/>
+            </div>
+            <input class="checkout-input" type="text" placeholder="Address"/>
+            <div class="input-row">
+              <input class="checkout-input" type="text" placeholder="City"/>
+              <input class="checkout-input" type="text" placeholder="State"/>
+            </div>
+            <input class="checkout-input" type="text" placeholder="Country"/>
+          </div>
+          <button class="pay-btn" onclick="goStep(2)">Continue to Shipping →</button>
+        </div>
+        <!-- Step 2: Shipping -->
+        <div id="stepContent2" style="display:none">
+          <div class="form-section">
+            <h3>Shipping Method</h3>
+            <div class="payment-methods">
+              <div class="pay-method selected" onclick="selectShipping(this)">
+                <div class="pay-radio"></div>
+                <div><div style="font-size:13px;font-weight:700;margin-bottom:2px;">Standard Delivery</div><div class="pay-desc">5-7 business days • Free over ₦50K</div></div>
+                <div style="margin-left:auto;font-weight:800;color:var(--gold);">₦3,500</div>
+              </div>
+              <div class="pay-method" onclick="selectShipping(this)">
+                <div class="pay-radio"></div>
+                <div><div style="font-size:13px;font-weight:700;margin-bottom:2px;">Express Delivery</div><div class="pay-desc">2-3 business days</div></div>
+                <div style="margin-left:auto;font-weight:800;color:var(--gold);">₦7,500</div>
+              </div>
+              <div class="pay-method" onclick="selectShipping(this)">
+                <div class="pay-radio"></div>
+                <div><div style="font-size:13px;font-weight:700;margin-bottom:2px;">Lagos Same-Day</div><div class="pay-desc">Order before 12PM, delivered today</div></div>
+                <div style="margin-left:auto;font-weight:800;color:var(--gold);">₦12,000</div>
+              </div>
+            </div>
+          </div>
+          <button class="pay-btn" onclick="goStep(3)">Continue to Payment →</button>
+        </div>
+        <!-- Step 3: Payment -->
+        <div id="stepContent3" style="display:none">
+          <div class="form-section">
+            <h3>Payment Method</h3>
+            <div class="payment-methods">
+              <div class="pay-method selected" onclick="selectPay(this)">
+                <div class="pay-radio"></div>
+                <div>
+                  <div class="pay-logo paystack">Paystack</div>
+                  <div class="pay-desc">Pay securely with Paystack — Cards, Bank Transfer, USSD</div>
+                </div>
+              </div>
+              <div class="pay-method" onclick="selectPay(this)">
+                <div class="pay-radio"></div>
+                <div>
+                  <div class="pay-logo flutter">Flutterwave</div>
+                  <div class="pay-desc">Pay securely with Flutterwave — Cards, Mobile Money, Bank</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="background:var(--black);padding:20px;margin-bottom:24px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gray);margin-bottom:16px;">Card Details (if applicable)</div>
+            <input class="checkout-input" style="width:100%;margin-bottom:12px;" placeholder="Card Number"/>
+            <div class="input-row">
+              <input class="checkout-input" placeholder="MM / YY"/>
+              <input class="checkout-input" placeholder="CVV"/>
+            </div>
+          </div>
+          <button class="pay-btn" onclick="processPayment()">🔒 Complete Purchase</button>
+          <div style="text-align:center;margin-top:16px;font-size:10px;color:var(--gray);letter-spacing:0.1em;">Secured by <strong style="color:var(--gold)">PAYSTACK</strong> & <strong style="color:var(--gold)">FLUTTERWAVE</strong> — 256-bit SSL Encryption</div>
+        </div>
+      </div>
+      <div class="checkout-summary">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:24px;color:var(--gray);">Order Summary</div>
+        <div class="order-items" id="checkoutOrderItems">
+          <div style="font-size:12px;color:var(--gray);text-align:center;padding:20px 0;">No items yet</div>
+        </div>
+        <div class="summary-totals">
+          <div class="summary-row"><span>Subtotal</span><span id="checkoutSubtotal">₦0</span></div>
+          <div class="summary-row"><span>Shipping</span><span>₦3,500</span></div>
+          <div class="summary-row"><span>Discount</span><span style="color:#4CAF50;">—</span></div>
+          <div class="summary-row grand"><span>Grand Total</span><span id="checkoutTotal">₦0</span></div>
+        </div>
+        <div style="margin-top:20px;background:var(--black);padding:16px;border:1px solid var(--border);">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray);margin-bottom:8px;">Promo Code</div>
+          <div style="display:flex;gap:0;">
+            <input style="flex:1;background:var(--charcoal);border:1px solid var(--border);color:var(--white);padding:10px 14px;font-size:12px;font-family:var(--font-display);outline:none;" placeholder="BIXEE10"/>
+            <button style="background:var(--gold);color:var(--black);border:none;padding:10px 16px;font-size:9px;font-weight:800;letter-spacing:0.15em;cursor:pointer;">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX - 6 + 'px';
+  cursor.style.top = e.clientY - 6 + 'px';
+  ring.style.left = e.clientX - 20 + 'px';
+  ring.style.top = e.clientY - 20 + 'px';
+});
+document.querySelectorAll('a,button,[onclick]').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform='scale(2)'; ring.style.transform='scale(1.5)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform='scale(1)'; ring.style.transform='scale(1)'; });
+});
+
+// NAV SCROLL
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// MOBILE MENU
+let mobileOpen = false;
+function toggleMobile() {
+  mobileOpen = !mobileOpen;
+  document.getElementById('mobileMenu').classList.toggle('open', mobileOpen);
+  const spans = document.querySelectorAll('.hamburger span');
+  if (mobileOpen) { spans[0].style.transform='rotate(45deg) translate(5px,5px)'; spans[1].style.opacity='0'; spans[2].style.transform='rotate(-45deg) translate(5px,-5px)'; }
+  else { spans.forEach(s => { s.style.transform=''; s.style.opacity=''; }); }
+}
+function closeMobile() { mobileOpen=false; document.getElementById('mobileMenu').classList.remove('open'); document.querySelectorAll('.hamburger span').forEach(s=>{ s.style.transform=''; s.style.opacity=''; }); }
+
+// CART
+let cart = [];
+function toggleCart() {
+  document.getElementById('cartSidebar').classList.toggle('open');
+  document.getElementById('cartOverlay').classList.toggle('active');
+}
+function addToCart(name, price) {
+  const numPrice = parseInt(price.replace(/[^0-9]/g,''));
+  const existing = cart.find(i => i.name===name);
+  if (existing) { existing.qty++; } else { cart.push({name, price, numPrice, qty:1}); }
+  updateCart();
+  showNotif(name + ' added to your cart!');
+  if (!document.getElementById('cartSidebar').classList.contains('open')) toggleCart();
+}
+function updateCart() {
+  const total = cart.reduce((s,i) => s + i.numPrice*i.qty, 0);
+  document.getElementById('cartCount').textContent = cart.reduce((s,i) => s+i.qty, 0);
+  document.getElementById('cartItemCount').textContent = cart.reduce((s,i) => s+i.qty, 0);
+  document.getElementById('cartSubtotal').textContent = '₦' + total.toLocaleString();
+  document.getElementById('cartTotal').textContent = '₦' + total.toLocaleString();
+  const container = document.getElementById('cartItemsContainer');
+  const empty = document.getElementById('cartEmpty');
+  if (cart.length === 0) { empty.style.display='flex'; container.querySelectorAll('.cart-item').forEach(e=>e.remove()); return; }
+  empty.style.display='none';
+  container.querySelectorAll('.cart-item').forEach(e=>e.remove());
+  cart.forEach((item, idx) => {
+    const el = document.createElement('div');
+    el.className='cart-item';
+    el.innerHTML=`<div class="cart-item-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div><div class="cart-item-details"><div class="cart-item-name">${item.name}</div><div class="cart-item-size">Size: M &nbsp;·&nbsp; Color: Black</div><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty(${idx},-1)">−</button><span class="qty-num">${item.qty}</span><button class="qty-btn" onclick="changeQty(${idx},1)">+</button></div></div><div class="cart-item-price">${item.price}</div>`;
+    container.appendChild(el);
+  });
+  updateCheckoutSummary(total);
+}
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  updateCart();
+}
+function updateCheckoutSummary(total) {
+  document.getElementById('checkoutSubtotal').textContent = '₦' + total.toLocaleString();
+  document.getElementById('checkoutTotal').textContent = '₦' + (total+3500).toLocaleString();
+  const container = document.getElementById('checkoutOrderItems');
+  container.innerHTML = '';
+  if (cart.length === 0) { container.innerHTML='<div style="font-size:12px;color:var(--gray);text-align:center;padding:20px 0;">No items yet</div>'; return; }
+  cart.forEach(item => {
+    const el=document.createElement('div');
+    el.className='order-item';
+    el.innerHTML=`<div class="order-thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div><div><div class="order-name">${item.name}</div><div class="order-detail">Qty: ${item.qty}</div></div><div class="order-price">${item.price}</div>`;
+    container.appendChild(el);
+  });
+}
+
+// CHECKOUT
+function openCheckout() { document.getElementById('checkoutModal').classList.add('open'); updateCart(); }
+function closeCheckout() { document.getElementById('checkoutModal').classList.remove('open'); }
+let currentStep = 1;
+function goStep(n) {
+  document.getElementById('stepContent'+currentStep).style.display='none';
+  document.getElementById('step'+currentStep).classList.remove('active');
+  document.getElementById('step'+currentStep).classList.add('done');
+  currentStep = n;
+  document.getElementById('stepContent'+currentStep).style.display='block';
+  document.getElementById('step'+currentStep).classList.add('active');
+}
+function selectPay(el) { document.querySelectorAll('.checkout-modal .pay-method').forEach(m=>m.classList.remove('selected')); el.classList.add('selected'); }
+function selectShipping(el) { 
+  const methods = el.closest('.payment-methods').querySelectorAll('.pay-method');
+  methods.forEach(m=>m.classList.remove('selected')); el.classList.add('selected'); 
+}
+function processPayment() {
+  closeCheckout();
+  cart = [];
+  updateCart();
+  setTimeout(() => showNotif('🎉 Order placed successfully! Confirmation sent to your email.'), 400);
+}
+
+// NOTIFICATION
+let notifTimer;
+function showNotif(msg) {
+  const n=document.getElementById('notif');
+  document.getElementById('notif-msg').textContent = msg;
+  n.classList.add('show');
+  clearTimeout(notifTimer);
+  notifTimer = setTimeout(() => n.classList.remove('show'), 3500);
+}
+
+// SCROLL REVEAL
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, {threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
